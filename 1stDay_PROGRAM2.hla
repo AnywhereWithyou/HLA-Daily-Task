@@ -1,0 +1,65 @@
+
+program NumberTable;
+#include ("stdlib.hhf")
+
+static
+    userInput: int16;                       //User input value
+    dispValue: int16;                       //Cell value of table
+
+begin NumberTable;
+    stdout.put("Gimme a starting value: ");
+    stdin.get(userInput);
+
+    mov(userInput, dispValue);
+
+    // row1
+    stdout.put(userInput, " ", userInput, " ", userInput, " ", userInput, " ", userInput, nl);
+    // row2
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    stdout.put(userInput, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ", nl);
+
+    // row3
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    stdout.put(userInput, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ", nl);
+
+    // row4
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    stdout.put(userInput, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ");
+
+    add(1, dispValue);
+    stdout.put(dispValue, " ", nl);
+            
+    // row5
+    stdout.put(userInput, " ", userInput, " ", userInput, " ", userInput, " ", userInput, nl);
+
+end NumberTable;
