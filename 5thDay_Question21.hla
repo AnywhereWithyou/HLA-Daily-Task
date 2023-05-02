@@ -1,0 +1,35 @@
+program Question21;
+
+#include ("stdlib.hhf")
+
+static
+    userInput: int32;   // Declaring a variable to store user input
+    displayValue: int32;   // Declaring a variable to store the display value
+
+begin Question21;
+
+    stdout.put( "Feed Me:" );   // Displaying a prompt message to the user
+    stdin.get(userInput);   // Reading user input and storing it in userInput variable
+
+    mov(userInput, EAX);   // Moving the value of userInput to the EAX register
+    mov(EAX, displayValue);   // Moving the value of EAX register to the displayValue variable
+    stdout.put(displayValue, "_");   // Displaying the value of displayValue followed by an underscore
+
+    add(displayValue, EBX);   // Adding the value of displayValue to the EBX register
+
+    add(1, displayValue);   // Adding 1 to the value of displayValue
+    stdout.put(displayValue, "_");   // Displaying the updated value of displayValue followed by an underscore
+
+    add(displayValue, EBX);   // Adding the value of displayValue to the EBX register
+    mov(EBX, displayValue);   // Moving the value of EBX register to the displayValue variable
+    stdout.put(displayValue, "_");   // Displaying the updated value of displayValue followed by an underscore
+
+    mov(userInput, EAX);   // Moving the value of userInput to the EAX register
+    mov(EAX, displayValue);   // Moving the value of EAX register to the displayValue variable
+    sub(1, displayValue);   // Subtracting 1 from the value of displayValue
+    stdout.put(displayValue, "_");   // Displaying the updated value of displayValue followed by an underscore
+
+    add(3, displayValue);   // Adding 3 to the value of displayValue
+    stdout.put(displayValue);   // Displaying the final value of displayValue
+
+end Question21;
