@@ -1,0 +1,43 @@
+program Question22;
+#include("stdlib.hhf")
+
+static
+    input1: int32;
+    input2: int32;
+
+begin Question22;
+    stdout.put("Feed Me: ");   // Prompt the user for the first input value
+    stdin.get(input1);        // Read the first input value from the user
+
+    stdout.put("Feed Me: ");   // Prompt the user for the second input value
+    stdin.get(input2);        // Read the second input value from the user
+
+    mov(input1,EAX);          // Move the first input value to the EAX register
+    mov(input2,EBX);          // Move the second input value to the EBX register
+
+    cmp(EAX, EBX);            // Compare the values in EAX and EBX
+    jge decrement_loop ;      // Jump to "decrement_loop" if EAX >= EBX
+    jmp increment_loop ;      // Jump to "increment_loop" if EAX < EBX
+
+increment_loop:
+    inc(input1);              // Increment the first input value
+    stdout.put(input1, nl);   // Print the updated first input value
+    mov(input1,EAX);          // Move the updated first input value to EAX
+    mov(input2,EBX);          // Move the second input value to EBX
+    sub(1,EBX);               // Subtract 1 from EBX
+    cmp(EAX, EBX);            // Compare the updated values in EAX and EBX
+    jl increment_loop ;       // Jump to "increment_loop" if EAX < EBX
+    jmp endProcess;           // Jump to "endProcess" if EAX >= EBX
+
+decrement_loop:
+    dec(input1);              // Decrement the first input value
+    stdout.put(input1, nl);   // Print the updated first input value
+    mov(input1,EAX);          // Move the updated first input value to EAX
+    mov(input2,EBX);          // Move the second input value to EBX
+    add(1,EBX);               // Add 1 to EBX
+    cmp(EAX, EBX);            // Compare the updated values in EAX and EBX
+    jg decrement_loop ;       // Jump to "decrement_loop" if EAX > EBX
+    jmp endProcess;           // Jump to "endProcess" if EAX <= EBX
+
+endProcess:
+end Question22;
