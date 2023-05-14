@@ -1,0 +1,42 @@
+program Distance;
+#include( "stdlib.hhf" )
+
+static
+    x1: real32;    // x-coordinate of point A
+    y1: real32;    // y-coordinate of point A
+    x2: real32;    // x-coordinate of point B
+    y2: real32;    // y-coordinate of point B
+    ab: real32;    // calculated distance
+
+begin Distance;
+
+stdout.put("Gimme a value for x1 : ");
+stdin.get(x1);
+stdout.put("Gimme a value for x2 : ");
+stdin.get(x2);
+stdout.put("Gimme a value for y1 : ");
+stdin.get(y1);
+stdout.put("Gimme a value for y2 : ");
+stdin.get(y2);
+
+finit();          // Initialize the FPU
+
+fld(x1);          // Load x1 onto the FPU stack
+fld(x2);          // Load x2 onto the FPU stack
+fsub();           // Subtract x2 from x1 and store the result on the FPU stack
+fld(st0);         // Duplicate the top value on the FPU stack
+fmul();           // Multiply the duplicated value by itself and store the result on the FPU stack
+
+fld(y1);          // Load y1 onto the FPU stack
+fld(y2);          // Load y2 onto the FPU stack
+fsub();           // Subtract y2 from y1 and store the result on the FPU stack
+fld(st0);         // Duplicate the top value on the FPU stack
+fmul();           // Multiply the duplicated value by itself and store the result on the FPU stack
+
+fadd();           // Add the two values on the FPU stack and store the result on the FPU stack
+fsqrt();          // Calculate the square root of the value on the FPU stack
+fstp(ab);         // Store the final result in the 'ab' variable
+
+stdout.put("The distance between points A and B is ", ab, nl);
+
+end Distance;
