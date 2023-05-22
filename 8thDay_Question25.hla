@@ -1,0 +1,41 @@
+program Question25;
+#include( "stdlib.hhf" )
+
+static
+    x: real32;    
+    y: real32; 
+    answeris: real32;    
+
+
+begin Question25;
+
+finit();    
+
+stdout.put("Gimme a value for x : ");
+stdin.get(x);
+stdout.put("Gimme a value for y : ");
+stdin.get(y);
+
+fld(x);          
+fld(x);          
+fld(12.0); 
+fmul();  
+
+fld(y);              
+fld(100.0); 
+fmul();
+fsub();
+
+fld(19.5);
+fadd();
+
+fld(x);   
+fld(y); 
+fadd();  
+fmul();  
+
+fstp(answeris);         
+
+stdout.put("The answer is ", answeris, nl);
+
+end Question25;
