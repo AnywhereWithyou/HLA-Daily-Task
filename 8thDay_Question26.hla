@@ -44,6 +44,6 @@ begin Question26;
 
     mov(1, refNum);
 
-    call CsumIsOdd(value1, value2, value3);
+    call sumIsOdd;
 
 end Question26;
