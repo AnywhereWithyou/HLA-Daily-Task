@@ -1,0 +1,74 @@
+program CcsizeProgram;
+
+#include( "stdlib.hhf" );
+
+static
+    ftes_input: real32;
+
+procedure ProcedureofCcsize( ftes : real32 ); @nodisplay; @noframe;
+
+    static
+        refVar10000: real32 := 10000;
+        refVar15000: real32 := 15000;
+        refVar20000: real32 := 20000;
+
+    begin ProcedureofCcsize;
+        pop(EDX); 
+        pop(ftes); 
+        push(EDX); 
+        finit();
+        fild(ftes);
+        fild(refVar10000);
+        fcomp();
+        fstsw(ax);
+        sahf();
+        setb(al);
+        cmp(al, 1);
+        je GreaterThan10000;
+        jmp LessThan10000;
+        GreaterThan10000:
+            finit();
+            fild(ftes);
+            fild(refVar15000);
+            fcomp();
+            fstsw(ax);
+            sahf();
+            setb(al);
+            cmp(al, 1);
+            je GreaterThan15000;
+            jmp Between10000And15000;
+            GreaterThan15000:
+                finit();
+                fild(ftes);
+                fild(refVar20000);
+                fcomp();
+                fstsw(ax);
+                sahf();
+                setb(al);
+                cmp(al, 1);
+                je GreaterThan20000;
+                jmp Between15000And20000;
+                GreaterThan20000:
+                    stdout.put( "size returned in AL is : X", nl );
+                    jmp TheEnd;
+        LessThan10000:
+            stdout.put( "size returned in AL is : S", nl );
+            jmp TheEnd;
+        Between10000And15000:
+            stdout.put( "size returned in AL is :  M", nl );
+            jmp TheEnd;
+        Between15000And20000:
+            stdout.put( "size returned in AL is :  L", nl );
+        TheEnd:
+            ret();
+    end ProcedureofCcsize;
+
+begin CcsizeProgram;
+    stdout.put( "gimme FTES: " );
+    stdin.get( ftes_input );
+    mov(ftes_input, eax);
+    push(eax);
+     call ProcedureofCcsize;
+end CcsizeProgram;
+
+

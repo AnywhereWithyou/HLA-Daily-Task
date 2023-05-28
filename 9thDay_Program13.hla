@@ -1,0 +1,44 @@
+program RollingAverage;
+
+#include( "stdlib.hhf" );
+
+static
+    inputValue : real32;
+    averageValue : real32;
+    countLoop : real32;
+    yesChar: int8 := 121;
+    noChar: int8 := 110;
+
+begin RollingAverage;
+    finit();
+    mainLoop:
+        stdout.put(nl ,"Enter data point:" );
+        stdin.get(inputValue);
+
+        fld(averageValue);
+        fld(countLoop);
+        fmul();
+
+        fld(inputValue);
+        fadd();
+
+        inc(countLoop);
+        fdiv();
+
+        fstp(averageValue);
+
+        stdout.put(nl ,"Rolling average = ",  averageValue);
+        ignoredLoop:
+            stdout.put(nl, nl ,"More data? ");
+            stdin.flushInput();
+            stdin.getc();
+            cmp(yesChar,al);
+            je mainLoop;
+            jmp soThen;
+            soThen:
+                cmp(noChar,al);
+                je endLoop;
+                    stdout.put( nl ,"Please enter (y/n) only!",  nl);
+                    jmp ignoredLoop;
+        endLoop:
+end RollingAverage;
