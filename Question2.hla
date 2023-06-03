@@ -1,0 +1,65 @@
+program ReferenceProgram;
+#include( "stdlib.hhf" );
+
+static
+    iValue1: int16 := 0;
+    iValue2: int16 := 0;
+    iValue3: int16 := 0;
+
+procedure makeSum( var i : int16; var j : int16; var k : int16 );@nodisplay; @noframe;
+static
+    dReturnAddress : dword;
+begin makeSum ;
+    // Entry sequence
+    // Preserve registers used
+    pop( dReturnAddress );
+
+    // Push back the return address
+    push( dReturnAddress );
+
+    // Preserve registers
+
+    // Calculate the sum of the three parameters
+    mov( [ebp+8], eax );   // Load i into EAX
+    add( [ebp+12], eax );  // Add j to EAX
+    add( [ebp+16], eax );  // Add k to EAX
+
+    // Store the sum in all three parameters
+    mov( eax, [ebp+8] );   // Store the sum in i
+    mov( eax, [ebp+12] );  // Store the sum in j
+    mov( eax, [ebp+16] );  // Store the sum in k
+
+    // Restore the registers used
+
+    ret();
+
+end makeSum ;
+
+begin ReferenceProgram ;
+
+    stdout.put( "Gimme iValue1:" );
+    stdin.get( iValue1 );
+    stdout.put( "Gimme iValue2:" );
+    stdin.get( iValue2 );
+    stdout.put( "Gimme iValue3:" );
+    stdin.get( iValue3 );
+
+    // Push parameters to the function.
+    // These parameters are passed by reference.
+    push( iValue1 );
+    push( iValue2 );
+    push( iValue3 );
+    call makeSum ;
+    add( 6, esp);  // Clean up the stack after the function call
+
+    stdout.put( "after makeSum!" );
+    stdout.newln();
+    stdout.put( "iValue1 = " );
+    stdout.put( iValue1 );
+    stdout.put( "iValue2 = " );
+    stdout.put( iValue2 );
+    stdout.put( "iValue3 = " );
+    stdout.put( iValue3 );
+    stdout.newln();
+
+end ReferenceProgram;

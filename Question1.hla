@@ -1,0 +1,40 @@
+program FPUProgram;
+#include( "stdlib.hhf" );
+
+static
+    a: real32 := 0;
+    b: real32 := 0;
+    c: real32 := 0;
+    answer: real32 := 0;
+
+begin FPUProgram ;
+
+    stdout.put("Gimme a:" );
+    stdin.get(a);
+    stdout.put("Gimme b:" );
+    stdin.get(b);
+    stdout.put("Gimme c:" );
+    stdin.get(c);
+
+    fldpi(); 
+    fld(a); 
+    fld(b); 
+    fmul();
+    fld(3.0); 
+    fld(c); 
+    fld(st0); 
+    fmul();
+    fadd(); 
+   
+    fstp(answer) ; 
+
+    stdout.put( "after calculating pi a b plus 3 c squared answer=" );
+    stdout.put( answer, 10, 3); 
+    stdout.newln();
+
+end FPUProgram ;
+
+// https://i.imgur.com/euSM1qg.png
+// I made this code like this reference but the example code of reference and my code are not working.
+// I am sure that you can't also get the correct result.
+// I want to call with teacher.
